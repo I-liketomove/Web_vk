@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+         <a class="block-title" href ="">Registration</a>
+         <p style="margin-right: 10px;"></p>
+         <a class="err-title" href ="">Sorry, this email address is already registred!</a>
+         <div class="row">
+             <div class="col-3">
+                     <p style="margin-top: 25px;"></p>
+                     <label class="answer-sett">Login:</label>
+                     <label class="answer-sett">Email:</label>
+                     <label class="answer-sett">NickName:</label>
+                     <label class="answer-sett">Password:</label>
+                     <label class="answer-sett">Repeat password:</label>
+                     <label class="answer-sett">Upload avatar:</label>
+             </div>
+             <div class="col-5">
+                 <div class="window-ask"></div>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="Some_L04-17">
+                    </form>
+                     <form class="d-flex">
+                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="w.rite_to_me@yandex.ru">
+                    </form>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="Rita Tevo">
+                    </form>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="**********">
+                    </form>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="**********">
+                    </form>
+                    <p style="margin-right: 10px;"></p>
+                     <form class="d-flex">
+                        <input class="form-control me-2" type="search" aria-label="avatar" placeholder="c:\avatar.jpg" style="width: 190px;">
+                        <button class="butt-sett" type="submit">choose</button>
+                     </form>
+                     <p style="margin-right: 10px;"></p>
+                     <button class="butt-sett" type="submit">Register!</button>
+                </div>
+              </div>
+         
+{% endblock %}

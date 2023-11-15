@@ -1,0 +1,39 @@
+{% load static %}
+
+         <div class="row question">
+            <div class="col-3">
+              <img src="{% static '/img/fire.png' %}" alt="" class="question-image">
+                  <div class="buttons">
+                      <button class="image-button" onclick="like(1)">
+                        <img src="{% static '/img/like.png' %}" alt="like" class="like-image">
+                      </button>
+                      <div class="counter">
+                        <p id="count1">0</p>
+                      </div>
+                      <button class="image-button" onclick="dislike(1)">
+                        <img src="{% static '/img/dislike.png' %}" alt="like" class="like-image">
+                      </button>
+                </div>
+              </div>
+              <div class="col-9">
+             <div class="question-title"><a href ="">Just like fire.</a></div>
+             <div class="question-text">
+              {{ question.content }}
+             </div>
+             
+             <div class="black-jack">
+              <a  href="">Answer (3)</a>
+              <div class="black-jack2">
+                <h  href="">Tags: </h>
+              </div>
+
+              <div class="answer">
+                <a  href="">black-jack</a>
+              </div>
+
+              <div class="answer">
+                <a  href="{% url 'tag' %}">bender</a>
+              </div>
+            </div>
+          </div>
+        </div>
