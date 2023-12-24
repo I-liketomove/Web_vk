@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
+
 {% block content %}
 
          <a class="block-title" href ="">Questions</a>
@@ -8,18 +9,8 @@
           </div>
 
 {% for question in questions %}
-
-{% include 'components/question-item.html' %}
-
+    {% include 'components/question-item.html' %}
 {% endfor %}
-  <div class="pagination">
-    <div class="page-buttons">
-      <button class="page-button">1</button>
-      <button class="page-button">2</button>
-      <button class="page-button">3</button>
-      <button class="page-button">...</button>
-      <button class="page-button">53</button>
-    </div>
-  </div>
 
+{% include 'components/pagin.html' %}
 {% endblock %}

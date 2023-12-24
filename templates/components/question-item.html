@@ -16,24 +16,20 @@
                 </div>
               </div>
               <div class="col-9">
-             <div class="question-title"><a href ="">Just like fire.</a></div>
+             <div class="question-title"><a href="{% url 'question' question.id %}">Just like fire.</a></div>
              <div class="question-text">
               {{ question.content }}
              </div>
              
-             <div class="black-jack">
-              <a  href="">Answer (3)</a>
-              <div class="black-jack2">
-                <h  href="">Tags: </h>
-              </div>
-
-              <div class="answer">
-                <a  href="">black-jack</a>
-              </div>
-
-              <div class="answer">
-                <a  href="{% url 'tag' %}">bender</a>
-              </div>
+             <p style="margin-top: 3px;"></p>
+             <span class="question-text">Tags:</span>
+             <span class="tags-question">
+                   <a class="badge bg-primary" href="{% url 'tag' %}">Python</a>
+                   <span class="badge bg-primary">HTML</span>
+                   <span class="badge bg-primary">CSS</span>
+                   <span class="badge bg-primary">Java Script</span>
+             </span>
+             <p style="margin-top: 3px;"></p>
+             <span class="badge bg-danger">Ansers(2)</span>
             </div>
-          </div>
         </div>

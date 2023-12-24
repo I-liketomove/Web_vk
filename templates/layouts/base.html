@@ -39,8 +39,10 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button href="{% url 'ask' %}" class="btn btn-outline-light" type="submit">Ask!</button>
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" maxlength="256">
+          <button class="btn btn-outline-light" type="submit">
+            <a href="{% url 'ask' %}" type="submit">ASK!</a>
+          </button>
         </form>
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <div><img src="{% static '/img/anon.png' %}" alt ="" class="name-image"></div>
@@ -101,17 +103,9 @@
 
   </body>
 
-  <div class="pagination">
-    <div class="page-buttons">
-      <button class="page-button">1</button>
-      <button class="page-button">2</button>
-      <button class="page-button">3</button>
-      <button class="page-button">...</button>
-      <button class="page-button">53</button>
-    </div>
+    <p style="margin-top: 20px;"></p>
     <footer class="footer">
       <span>Talysheva Olesya iOS-12 did this homework.</span>
     </footer>
-  </div>
 
 </html>

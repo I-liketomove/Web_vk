@@ -4,21 +4,22 @@
 
 <!-- Begin page content -->
 
-
+    <div class="col-8">
         <a class="block-title" href ="">New question</a>
         <form action="/submit_form" method="post">
           <label for="title1" class="answer-ask">Title:</label>
-          <textarea id="title1" name="title" rows="1" cols="102"></textarea>
+          <textarea id="title1" name="title" rows="1" cols="102" maxlength="256"></textarea>
         </form>
         <form action="/submit_form" method="post">
           <label for="text1" class="answer-ask">Text:</label>
-          <textarea id="text1" name="text" rows="14" cols="102"></textarea>
+          <textarea id="text1" name="text" rows="14" cols="102" maxlength="256"></textarea>
         </form>
         <form action="/submit_form" method="post">
           <label for="tags-this1" class="answer-ask">Tags:</label>
-          <textarea id="tags-this1" name="tags-this" rows="1" cols="102"></textarea>
+          <textarea id="tags-this1" name="tags-this" rows="1" cols="102" maxlength="256"></textarea>
         </form>
         <button class="butt-ans" type="submit">Ask!</button>
+    </div>
        
          
       {% endblock %}

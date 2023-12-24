@@ -1,8 +1,6 @@
 {% extends 'layouts/base.html' %}
-
+{% load static%}
 {% block content %}
-{% include 'components/question-item.html' %}
-
 
          <div class="row question-main">
             <div class="col-3">
@@ -20,26 +18,25 @@
                 </div>
               </div>
               <div class="col-9">
-             <div class="question-title"><a href ="">Just like fire.</a></div>
-             <div class="question-text">Since ancient times, people have used fire in
-               the household for cooking and heating their homes. Nowadays, fire is
-               also used in many industries. Without fire, human life is impossible.
-               But fire is creative only if safety rules are followed. Otherwise, a fire
-               may occur. Especially dangerous are forest fires, which spread with
-               great speed, and fires at industrial enterprises. Therefore, fire should
-               be handled very carefully. If it is even more or less clear with gases
-               (the gas burns, is oxidized by the gas + the required temperature),
-               then plasma is a partially or fully ionized gas formed from neutral atoms
-               (or molecules) and charged particles (ions and electrons).</div>
+             <div class="question-title"><a href="{% url 'question' question.id %}">Just like fire.</a></div>
+             <div class="question-text">
+              {{ question.content }}
+             </div>
+
+             <p style="margin-top: 3px;"></p>
              <span class="question-text">Tags:</span>
              <span class="tags-question">
-                   <span class="badge bg-primary">Python</span>
+                   <a class="badge bg-primary" href="{% url 'tag' %}">Python</a>
                    <span class="badge bg-primary">HTML</span>
                    <span class="badge bg-primary">CSS</span>
                    <span class="badge bg-primary">Java Script</span>
              </span>
-           </div>
+             <p style="margin-top: 3px;"></p>
+             <span class="badge bg-danger">Ansers(2)</span>
             </div>
+        </div>
+
+        <div class="block-title" href ="">Answers</div>
          <div class="row question">
            <div class="col-3">
              <img src="{% static '/img/grec.png' %}" alt ="" class="question-image">
@@ -107,11 +104,11 @@
             </table>
            </div>
          </div>
+
          <label for="comment" class="answer-ask">Enter your answer hear:</label>
          <form action="/submit_form" method="post">
-            <textarea id="comment" name="comment" rows="14" cols="102"></textarea>
+            <textarea id="comment" name="comment" rows="14" cols="102" maxlength="256"></textarea>
             <button class="butt-ans" type="submit">Answer</button>
           </form>
-       </div>
 
 {% endblock %}

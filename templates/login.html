@@ -2,25 +2,32 @@
 {% load static %}
 {% block content %}
 
+    <div class="col-8">
+         <a class="block-title" href ="">Log in</a>
+         <p style="margin-right: 10px;"></p>
+         <a class="err-title" href ="">Sorry, wrong password!</a>
+         <div class="row">
+             <div class="col-2">
+                     <p style="margin-top: 25px;"></p>
+                     <label class="answer-sett">Login:</label>
+                     <label class="answer-sett">Password:</label>
+             </div>
+             <div class="col-6">
+                 <div class="window-ask"></div>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="Enter your login here"  maxlength="256">
+                    </form>
+                     <form class="d-flex">
+                      <input class="form-control me-2" aria-label="Search" placeholder="**********" type="password" maxlength="256">
+                    </form>
+                     <p style="margin-right: 10px;"></p>
+                     <button class="butt-sett" type="submit">Log in!</button>
+                     <p style="margin-top: 8px;"></p>
+                     <div class="best-members">
+                         <a href="{% url 'signup' %}">create new account</a>
+                     </div>
+                </div>
+         </div>
+    </div>
 
-       <div class="col-8">
-         <h1 style="display:block;">Log in</h1>
-           <span class="labelTextRed" >Sorry, wrong password!</span>
-           <span class="labelTextRed" ></span>
-          <div class="input-group input-group-sm mb-3">
-            <span class="labelText" >Login</span>
-            <input class="label4">
-          </div>
-
-          <div class="input-group input-group-sm mb-3">
-            <span class="labelText" >password</span>
-            <input type="password" class="label4">
-          </div>
-
-           <button class="buttonASK" style="border-radius: 10px;">Log in</button>
-           <div class="create">
-               <a href="{% url 'signup' %}" class="shapka_1" style="color:blue; ">create new account</a>
-           </div>
-
-       </div>
 {% endblock %}

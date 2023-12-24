@@ -5,7 +5,8 @@
 <h1 >Hot questions</h1>
 
 {% for question in questions %}
-{% include 'components/question-item.html' %}
+    {% include 'components/question-item.html' %}
 {% endfor %}
 
+{% include 'components/pagin.html' %}
 {% endblock %}
