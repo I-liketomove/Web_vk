@@ -9,10 +9,10 @@ class LikeManager(models.Manager):
 
 class QuestionManager(models.Manager):
     def few_best_questions(self, amount=10):
-        return self.all().order_by('-like')[:amount]
+        return self.all().order_by('-total_likes')[:amount]
 
     def hot_questions(self, amount=10):
-        return self.all().annotate(answer_count=Count('answer')).order_by('-like', '-answer_count')[:amount]
+        return self.all().order_by('-total_likes', '-total_answers')[:amount]
 
     def this_tag_questions(self, tag_id):
         tag = Tag.objects.get(id=tag_id)
@@ -61,6 +61,8 @@ class Question(models.Model):
     tags = models.ManyToManyField(Tag, related_name='questions')
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date_written = models.DateTimeField(default=timezone.now)
+    total_likes = models.IntegerField(default=0)
+    total_answers = models.IntegerField(default=0)
 
     objects = QuestionManager()
 
@@ -73,6 +75,7 @@ class Answer(models.Model):
     what_question = models.ForeignKey(Question, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date_written = models.DateTimeField(default=timezone.now)
+    total_likes = models.IntegerField(default=0)
 
     objects = AnswerManager()
 

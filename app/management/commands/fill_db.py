@@ -87,6 +87,8 @@ class Command(BaseCommand):
                 photo=f"img/fire.png",
                 author=author,
                 date_written=question_date,
+                total_likes=1,
+                total_answers=10,
             )
 
             selected_tags = random.sample(all_tags, random.randint(1, 5))
@@ -111,6 +113,7 @@ class Command(BaseCommand):
                     what_question=question_data,
                     author=answer_author,
                     date_written=answer_date,
+                    total_likes=2,
                 )
                 like_answer1 = get_random_user(answer_author)
                 like_answer2 = get_random_user(like_answer1)
