@@ -1,35 +1,34 @@
 {% load static %}
 
-         <div class="row question">
-            <div class="col-3">
-              <img src="{% static '/img/fire.png' %}" alt="" class="question-image">
-                  <div class="buttons">
-                      <button class="image-button" onclick="like(1)">
-                        <img src="{% static '/img/like.png' %}" alt="like" class="like-image">
-                      </button>
-                      <div class="counter">
-                        <p id="count1">0</p>
-                      </div>
-                      <button class="image-button" onclick="dislike(1)">
-                        <img src="{% static '/img/dislike.png' %}" alt="like" class="like-image">
-                      </button>
-                </div>
-              </div>
-              <div class="col-9">
-             <div class="question-title"><a href="{% url 'question' question.id %}">Just like fire.</a></div>
-             <div class="question-text">
-              {{ question.content }}
-             </div>
-             
-             <p style="margin-top: 3px;"></p>
-             <span class="question-text">Tags:</span>
-             <span class="tags-question">
-                   <a class="badge bg-primary" href="{% url 'tag' %}">Python</a>
-                   <span class="badge bg-primary">HTML</span>
-                   <span class="badge bg-primary">CSS</span>
-                   <span class="badge bg-primary">Java Script</span>
-             </span>
-             <p style="margin-top: 3px;"></p>
-             <span class="badge bg-danger">Ansers(2)</span>
-            </div>
-        </div>
+<div class="row question">
+  <div class="col-3">
+    <img src="{{ question.photo.url }}" alt="" class="question-image">
+    <div class="buttons">
+      <button class="image-button" onclick="like(1)">
+        <img src="{% static 'img/like.png' %}" alt="like" class="like-image">
+      </button>
+      <div class="counter">
+        <p id="count1">{{ question.like }}</p>
+      </div>
+      <button class="image-button" onclick="dislike(1)">
+        <img src="{% static 'img/dislike.png' %}" alt="like" class="like-image">
+      </button>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="question-title"><a href="{% url 'question' question.id %}">{{ question.title }}</a></div>
+    <div class="question-text">
+      {{ question.content }}
+    </div>
+
+    <p style="margin-top: 3px;"></p>
+    <span class="question-text">Tags:</span>
+    {% for tag in question.tags.all %}
+      <span class="tags-question">
+        <a class="badge bg-primary" href="?tag={{ tag.name }}">{{ tag.name }}</a>
+      </span>
+    {% endfor %}
+    <p style="margin-top: 3px;"></p>
+    <span class="badge bg-danger">Answers</span>
+  </div>
+</div>

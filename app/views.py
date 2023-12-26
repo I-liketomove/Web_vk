@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from django.core.paginator import Paginator
 
+from app.models import *
 
 # Create your views here.
 
@@ -30,7 +31,7 @@ def paginate(objects, page, per_page=5):
 
 def index(request):
     page = request.GET.get('page', 1) #http://127.0.0.1:8000/?page=2
-    paginate_res, page_obj = paginate(QUESTIONS, page)
+    paginate_res, page_obj = paginate(Question.objects.all(), page)
     return render(request,'index.html', {'page_obj': page_obj, 'questions': paginate_res})
 
 def question(request, question_id):
