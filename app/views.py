@@ -31,7 +31,7 @@ def paginate(objects, page, per_page=5):
 
 def find_top_tags(objects, count_top = 7):
     # топ 7 тегов из базы данных (самых популярных)
-    popular_tags = objects.annotate(num_questions=Count('questions')).order_by('-num_questions')[:count_top]
+    popular_tags = objects.top_tags(objects, count_top)
     return popular_tags
 
 def find_best_members(objects, count_top = 5):
