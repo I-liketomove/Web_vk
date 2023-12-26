@@ -9,3 +9,4 @@ class Command(BaseCommand):
         Answer.objects.all().delete()
         Question.objects.all().delete()
         Tag.objects.all().delete()
+        User.objects.all().delete()

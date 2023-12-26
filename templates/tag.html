@@ -2,11 +2,12 @@
 {% load static %}
 {% block content %}
 
-         <a class="block-title" href ="">Tag:</a>
-         <a class="block-title" href ="">Python</a>
+<a class="block-title">Вопросы по тегу: {{ tag_name }}</a>
 
 {% for question in questions %}
-  {% include 'components/question-item.html' %}
+    <div class="row question">
+    {% include 'components/question-item.html' %}
+    </div>
 {% endfor %}
 
 {% include 'components/pagin.html' %}

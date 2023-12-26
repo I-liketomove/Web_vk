@@ -2,108 +2,17 @@
 {% load static%}
 {% block content %}
 
-         <div class="row question-main">
-            <div class="col-3">
-              <img src="{% static '/img/fire.png' %}" alt="" class="question-image">
-                  <div class="buttons">
-                      <button class="image-button" onclick="like(1)">
-                        <img src="{% static '/img/like.png' %}" alt="like" class="like-image">
-                      </button>
-                      <div class="counter">
-                        <p id="count1">0</p>
-                      </div>
-                      <button class="image-button" onclick="dislike(1)">
-                        <img src="{% static '/img/dislike.png' %}" alt="like" class="like-image">
-                      </button>
-                </div>
-              </div>
-              <div class="col-9">
-             <div class="question-title"><a href="{% url 'question' question.id %}">Just like fire.</a></div>
-             <div class="question-text">
-              {{ question.content }}
-             </div>
-
-             <p style="margin-top: 3px;"></p>
-             <span class="question-text">Tags:</span>
-             <span class="tags-question">
-                   <a class="badge bg-primary" href="{% url 'tag' %}">Python</a>
-                   <span class="badge bg-primary">HTML</span>
-                   <span class="badge bg-primary">CSS</span>
-                   <span class="badge bg-primary">Java Script</span>
-             </span>
-             <p style="margin-top: 3px;"></p>
-             <span class="badge bg-danger">Ansers(2)</span>
-            </div>
-        </div>
+    <div class="row question-main">
+    {% include 'components/question-item.html' %}
+    </div>
 
         <div class="block-title" href ="">Answers</div>
-         <div class="row question">
-           <div class="col-3">
-             <img src="{% static '/img/grec.png' %}" alt ="" class="question-image">
-             <span class="buttons">
-                      <button class="image-button" onclick="like(2)">
-                        <img src="{% static '/img/like.png' %}" alt="like" class="like-image">
-                      </button>
-                      <span class="counter">
-                        <p id="count2">0</p>
-                      </span>
-                      <button class="image-button" onclick="dislike(2)">
-                        <img src="{% static '/img/dislike.png' %}" alt="like" class="like-image">
-                      </button>
-             </span>
-           </div>
-           <div class="col-9">
-             <div class="question-title"><a href ="">The interesting hystory.</a></div>
-             <div class="question-text">The theory that all objects are made of atoms was
-               first described by the Greek philosophers Democritus and Leucippus.
-               But the modern scientific approach to the structure of matter was first
-               developed by Thales of Miletus and his students. The Latin alphabet originated
-               in ancient Greece, during the Phoenician colonization in the 8th century BC.
-               Early works in the field of physics and engineering were written by Archimedes
-               in the Greek colony in Sicily - Syracuse, as well as many other scientists.
-               Mainland Greece is located on the Balkan Peninsula and is washed by the Mediterranean Sea,
-               which flows into the Ionian Sea in the west and the Aegean Sea in the east.</div>
-             <table>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <th>Correct!</th>
-                </tr>
-            </table>
-           </div>
-         </div>
-         <div class="row question">
-           <div class="col-3">
-             <img src="{% static '/img/dog.png' %}" alt ="" class="question-image">
-             <span class="buttons">
-                      <button class="image-button" onclick="like(3)">
-                        <img src="{% static '/img/like.png' %}" alt="like" class="like-image">
-                      </button>
-                      <span class="counter">
-                        <p id="count3">0</p>
-                      </span>
-                      <button class="image-button" onclick="dislike(3)">
-                        <img src="{% static '/img/dislike.png' %}" alt="like" class="like-image">
-                      </button>
-             </span>
-           </div>
-           <div class="col-9">
-             <div class="question-title"><a href ="">I'm so tired!</a></div>
-             <div class="question-text">Motivation is what gets you to a goal, what keeps you
-               going when things get tough, the reason you get up early to exercise or work
-               late to finish a project. More often than not, positive motivation works better —
-               if you really want something, you'll do a much better job than if you're trying
-               to avoid an undesirable scenario. Thus, motivation is the desire to achieve something.
-               Sometimes you don't want to get up early and feel very sleepy, but if you have
-               a reason to sincerely want to get up early, you jump out of bed with excitement.
-               This type of motivation works best.</div>
-             <table>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <th>Correct!</th>
-                </tr>
-            </table>
-           </div>
-         </div>
+
+{% for answer in answers %}
+    {% include 'components/answer-item.html' %}
+{% endfor %}
+
+{% include 'components/pagin.html' %}
 
          <label for="comment" class="answer-ask">Enter your answer hear:</label>
          <form action="/submit_form" method="post">

@@ -75,23 +75,17 @@
          <div class="col">
            <a class="block-title" href ="">Popular tags</a>
            <div class="tags">
-             <span class="badge bg-warning tags">Pascal</span>
-             <span class="badge bg-info tags">Python</span>
-             <span class="badge bg-success tags">C</span>
-             <span class="badge bg-primary tags">C++</span>
-             <span class="badge bg-danger tags">HTML</span>
-             <span class="badge bg-info tags">CSS</span>
-             <span class="badge bg-warning tags">Java Script</span>
-           </div>
+              {% for tag in popular_tags %}
+                <span class="badge bg-success tags">{{ tag.name }}</span>
+              {% endfor %}
+            </div>
            <br/>
            <a class="block-title" href ="">Best members</a>
            <ul>
-             <li class="best-members">Mario</li>
-             <li class="best-members">Mister Propper</li>
-             <li class="best-members">Looka</li>
-             <li class="best-members">Among Us</li>
-             <li class="best-members">Who is it?!</li>
-          </ul>
+              {% for member in best_members %}
+              <li class="best-members">{{ member.nickname }}</li>
+              {% endfor %}
+              </ul>
          </div>
        </div>
      </div>

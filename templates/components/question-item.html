@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="row question">
+
   <div class="col-3">
     <img src="{{ question.photo.url }}" alt="" class="question-image">
     <div class="buttons">
@@ -25,10 +25,9 @@
     <span class="question-text">Tags:</span>
     {% for tag in question.tags.all %}
       <span class="tags-question">
-        <a class="badge bg-primary" href="?tag={{ tag.name }}">{{ tag.name }}</a>
+        <a class="badge bg-primary" href="{% url 'tag' tag_name=tag.name %}">{{ tag.name }}</a>
       </span>
     {% endfor %}
     <p style="margin-top: 3px;"></p>
-    <span class="badge bg-danger">Answers</span>
+    <div class="badge bg-danger">Answers: {{ question.answer_set.count }}</div>
   </div>
-</div>

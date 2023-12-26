@@ -5,7 +5,9 @@
 <h1 >Hot questions</h1>
 
 {% for question in questions %}
+    <div class="row question">
     {% include 'components/question-item.html' %}
+    </div>
 {% endfor %}
 
 {% include 'components/pagin.html' %}

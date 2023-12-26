@@ -1,0 +1,34 @@
+{% load static %}
+
+ <div class="row question">
+           <div class="col-2">
+             <span class="buttons">
+                      <button class="image-button" onclick="like(2)">
+                        <img src="{% static '/img/like.png' %}" alt="like" class="like-image">
+                      </button>
+                      <span class="counter">
+                        <p id="count1">{{ answer.like }}</p>
+                      </span>
+                      <button class="image-button" onclick="dislike(2)">
+                        <img src="{% static '/img/dislike.png' %}" alt="like" class="like-image">
+                      </button>
+             </span>
+           </div>
+           <div class="col-10">
+            <div class="question-text">
+            {{ answer.content }}
+            </div>
+                 {% if answer.is_correct %}
+                    <table>
+                        <tr>
+                            <td><input type="checkbox" checked></td>
+                            <th>Correct!</th>
+                        </tr>
+                    </table>
+                {% else %}
+                    <td><input type="checkbox"></td>
+                    <th>Correct!</th>
+                {% endif %}
+            </table>
+           </div>
+         </div>

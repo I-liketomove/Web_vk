@@ -9,7 +9,9 @@
           </div>
 
 {% for question in questions %}
+    <div class="row question">
     {% include 'components/question-item.html' %}
+    </div>
 {% endfor %}
 
 {% include 'components/pagin.html' %}
