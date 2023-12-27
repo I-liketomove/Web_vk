@@ -20,9 +20,10 @@ from app import views
 from askme import settings
 
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
+    path('signup/', views.RegisterUser.as_view(), name='signup'),
     path('ask/', views.ask, name='ask'),
-    path('login/', views.login, name='login'),
+    path('login/', views.LoginUser.as_view(), name='login'),
+    path('logout/', views.logout_user, name='logout'),
     path('tag/<str:tag_name>/', views.tag, name='tag'),
     path('settings/', views.settings, name='settings'),
     path('hot/', views.hot, name='hot'),

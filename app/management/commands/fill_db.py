@@ -54,6 +54,7 @@ class Command(BaseCommand):
                     author=like_question_author,
                     type=type_value,
                 )
+            return type_value
 
         def create_like_answer(answer_data, user):
             answer_author = user
@@ -71,6 +72,7 @@ class Command(BaseCommand):
                     author=answer_author,
                     type=type_value,
                 )
+            return type_value
 
         for i in range(ratio * 10):
             # Создаем вопрос
@@ -95,7 +97,8 @@ class Command(BaseCommand):
             question_data.tags.set(selected_tags)
 
             # Создаем LikeQuestion
-            create_like_question(question_data, get_random_user(author))
+            question_data.total_likes = create_like_question(question_data, get_random_user(author))
+            question_data.save()
 
             for j in range(10):  # Создаем 10 ответов для каждого вопроса
                 # Создаем ответ
@@ -113,13 +116,16 @@ class Command(BaseCommand):
                     what_question=question_data,
                     author=answer_author,
                     date_written=answer_date,
-                    total_likes=2,
+                    total_likes=-3,
                 )
                 like_answer1 = get_random_user(answer_author)
                 like_answer2 = get_random_user(like_answer1)
                 # Создаем LikeAnswer
-                create_like_answer(answer_data, like_answer1)
-                create_like_answer(answer_data, like_answer2)
+                total_likes_for_answer = 0
+                total_likes_for_answer += create_like_answer(answer_data, like_answer1)
+                total_likes_for_answer += create_like_answer(answer_data, like_answer2)
+                answer_data.total_likes = total_likes_for_answer
+                answer_data.save()
 
             if (i % 10 == 0):
                 print(f"Создан вопрос №{i // 10 + 1}")

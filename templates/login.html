@@ -2,32 +2,23 @@
 {% load static %}
 {% block content %}
 
-    <div class="col-8">
-         <a class="block-title" href ="">Log in</a>
-         <p style="margin-right: 10px;"></p>
-         <a class="err-title" href ="">Sorry, wrong password!</a>
-         <div class="row">
-             <div class="col-2">
-                     <p style="margin-top: 25px;"></p>
-                     <label class="answer-sett">Login:</label>
-                     <label class="answer-sett">Password:</label>
-             </div>
-             <div class="col-6">
-                 <div class="window-ask"></div>
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" aria-label="Search" placeholder="Enter your login here"  maxlength="256">
-                    </form>
-                     <form class="d-flex">
-                      <input class="form-control me-2" aria-label="Search" placeholder="**********" type="password" maxlength="256">
-                    </form>
-                     <p style="margin-right: 10px;"></p>
+ <h1>{{title}}</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+<div class="form-error">{{ form.non_field_errors }}</div>
+
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>
+    {{ f }}
+</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
                      <button class="butt-sett" type="submit">Log in!</button>
                      <p style="margin-top: 8px;"></p>
                      <div class="best-members">
                          <a href="{% url 'signup' %}">create new account</a>
                      </div>
-                </div>
-         </div>
-    </div>
 
 {% endblock %}

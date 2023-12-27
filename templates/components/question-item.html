@@ -8,7 +8,7 @@
         <img src="{% static 'img/like.png' %}" alt="like" class="like-image">
       </button>
       <div class="counter">
-        <p id="count1">{{ question.like }}</p>
+        <p id="count1">{{ question.total_likes }}</p>
       </div>
       <button class="image-button" onclick="dislike(1)">
         <img src="{% static 'img/dislike.png' %}" alt="like" class="like-image">
@@ -29,5 +29,5 @@
       </span>
     {% endfor %}
     <p style="margin-top: 3px;"></p>
-    <div class="badge bg-danger">Answers: {{ question.answer_set.count }}</div>
+    <div class="badge bg-danger">Answers: {{ question.total_answers }}</div>
   </div>
