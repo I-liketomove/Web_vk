@@ -6,6 +6,8 @@
          <a class="block-title" href ="">Questions</a>
          <div class="question-title">
             <a  href="{% url 'hot' %}">Hot question</a>
+              <a>|</a>
+            <a  href="{% url 'new' %}">New question</a>
           </div>
 
 {% for question in questions %}

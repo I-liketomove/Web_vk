@@ -18,6 +18,9 @@ class QuestionManager(models.Manager):
         tag = Tag.objects.get(id=tag_id)
         return self.get_queryset().filter(tags=tag).order_by('-id')
 
+    def newest_questions(self, amount=10):
+        return self.all().order_by('-date_written')[:amount]
+
 
 class TagManager(models.Manager):
     def top_tags(self, count_top=7):

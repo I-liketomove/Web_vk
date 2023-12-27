@@ -19,7 +19,7 @@ def paginate(objects, page, per_page=5):
     if int(page) < 1:
         page = str(1)
     # Явно упорядочиваем QuerySet по умолчанию по полю 'id'
-    paginator = Paginator(objects.order_by('id'), per_page)
+    paginator = Paginator(objects, per_page)
     page_obj = paginator.get_page(page)
     return paginator.page(page), page_obj
 
@@ -35,7 +35,7 @@ def find_best_members(objects, count_top=5):
 
 def index(request):
     page = request.GET.get('page', 1)
-    paginate_res, page_obj = paginate(Question.objects.all(), page)
+    paginate_res, page_obj = paginate(Question.objects.all().order_by('id'), page)
     return render(request, 'index.html', {'page_obj': page_obj, 'questions': paginate_res,
                                            'popular_tags': find_top_tags(Tag.objects), 'best_members': find_best_members(User.objects)})
 
@@ -43,7 +43,7 @@ def question(request, question_id):
     page = request.GET.get('page', 1)
     question_item = get_object_or_404(Question, id=question_id)
     answers = Answer.objects.filter(what_question=question_item)
-    paginate_res, page_obj = paginate(answers, page, 3)
+    paginate_res, page_obj = paginate(answers.order_by('id'), page, 3)
     return render(request, 'question.html', {'question': question_item, 'page_obj': page_obj, 'answers': paginate_res,
                                               'popular_tags': find_top_tags(Tag.objects), 'best_members': find_best_members(User.objects)})
 
@@ -54,13 +54,20 @@ def hot(request):
     return render(request, 'hot.html', {'page_obj': page_obj, 'questions': paginate_res,
                                          'popular_tags': find_top_tags(Tag.objects), 'best_members': find_best_members(User.objects)})
 
+def new(request):
+    page = request.GET.get('page', 1)
+    new_questions = Question.objects.newest_questions(amount=10)
+    paginate_res, page_obj = paginate(new_questions, page)
+    return render(request, 'new.html', {'page_obj': page_obj, 'questions': paginate_res,
+                                         'popular_tags': find_top_tags(Tag.objects), 'best_members': find_best_members(User.objects)})
+
 def settings(request):
     return render(request, 'settings.html', {'popular_tags': find_top_tags(Tag.objects), 'best_members': find_best_members(User.objects)})
 
 def tag(request, tag_name):
     page = request.GET.get('page', 1)
     questions_with_tag = Question.objects.filter(tags__name=tag_name)
-    paginate_res, page_obj = paginate(questions_with_tag, page)
+    paginate_res, page_obj = paginate(questions_with_tag.order_by('id'), page)
     return render(request, 'tag.html', {'page_obj': page_obj, 'questions': paginate_res,
                                           'tag_name': tag_name, 'popular_tags': find_top_tags(Tag.objects), 'best_members': find_best_members(User.objects)})
 
@@ -76,10 +83,10 @@ def ask(request):
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
 
-
 class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
     template_name = 'signup.html'
+    success_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,16 +100,9 @@ class RegisterUser(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def form_valid(self, form):
-        user = form.save(commit=False)
-        login_field = form.cleaned_data.get('login')
-        user.username = login_field  # Присваиваем значение логина полю username модели User
-        user.save()
-
-        login(self.request, user)  # Логиним пользователя
-        return self.get_success_url()
-
-    def get_success_url(self):
-        return reverse('index')  # Перенаправляем на главную страницу
+        user = form.save()
+        login(self.request, user)
+        return redirect('index')
 
 class LoginUser(DataMixin, LoginView):
     form_class = LoginUserForm

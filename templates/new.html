@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 >New questions</h1>
+
+{% for question in questions %}
+    <div class="row question">
+    {% include 'components/question-item.html' %}
+    </div>
+{% endfor %}
+
+{% include 'components/pagin.html' %}
+{% endblock %}
